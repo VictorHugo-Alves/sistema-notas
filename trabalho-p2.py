@@ -1,7 +1,9 @@
 #principal
 def main():
   notas = {}
-  usuario = input('Olá! Qual o seu nome?').title()
+  print("\n******************* Sistema de notas - UERJ *******************")
+  print('Olá, professor(a) seja bem vindo(a) ao sistema de gerenciamento de notas da UERJ')
+  usuario = input('Qual o seu nome?').title()
   while True:
     escolha = menu()
     if escolha == 1:
@@ -11,7 +13,13 @@ def main():
     elif escolha == 3:
       ordenar_alunos(notas)
     elif escolha == 4:
-      printar_notas(notas)
+      dados_carregados = ler_notas()
+      if dados_carregados:
+        notas.update(dados_carregados) 
+        print("Dados carregados com sucesso!")
+        printar_notas(notas) 
+      else:
+        print("Nenhum dado para carregar ou arquivo não encontrado/vazio.")
     elif escolha == 0:
       print(f'Fim do programa, obrigado {usuario}!')
       break
@@ -33,6 +41,7 @@ def menu():
   except ValueError:
     print('Insira um número válido')
     return None
+
 
 #Cadastro notas
 def cadastro_alunos(notas):
@@ -79,6 +88,7 @@ def cadastro_alunos(notas):
         print('Voltando ao menu')
         break
 
+        
 #estatisticas
 def estatistica(notas):
   print('''
@@ -110,6 +120,7 @@ def estatistica(notas):
     else:
       print('Escolha um número válido')
 
+
 #ordenação
 def ordenar_alunos(notas):
   print('''
@@ -117,6 +128,14 @@ def ordenar_alunos(notas):
   2. Ordenar por nota
   0. Voltar ao menu
   ''')
+  if not notas:
+        dados_arquivo = ler_notas()
+        if dados_arquivo:
+            notas.update(dados_arquivo)
+        else:
+            print('Não há dados disponíveis para ordenação')
+            return
+        
   while True:
     try:
         escolha = int(input('Insira uma das opções acima.'))
@@ -134,6 +153,7 @@ def ordenar_alunos(notas):
     except ValueError:
       print('Insira um número válido')
 
+        
 #guardando arquivos
 def guardar_notas(notas):
   import json
@@ -142,12 +162,13 @@ def guardar_notas(notas):
 
 
 #lendo arquivos
-def ler_notas(notas):
+def ler_notas():
   import json
   with open('notas.json','r') as leitura_arquivo:
     texto = leitura_arquivo.read()
     dados = json.loads(texto)
-
+    return dados
+    
 #printando arquivos
 def printar_notas(notas):
   import json
@@ -156,6 +177,7 @@ def printar_notas(notas):
     dados = json.loads(texto)
   print('Dados salvos no arquivo:')
   print(dados)
+
 
 
 #Chamando o programa
