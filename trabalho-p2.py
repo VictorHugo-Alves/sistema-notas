@@ -97,6 +97,17 @@ def estatistica(notas):
   3. Menor nota
   0. Voltar ao menu
   ''')
+  if not notas:
+    print('O dicionário atual está vazio. Tentando carregar dados do arquivo JSON')
+    dados_arquivo = ler_notas()
+    if dados_arquivo:
+        notas.update(dados_arquivo)
+        print('Dados do arquivo encontrados para a operação.')
+    else:
+        print('Não há dados disponíveis para calcular as estatísticas')
+        return
+
+
   while True:
     try:
       escolha = int(input('Insira uma das opções acima.'))
@@ -104,16 +115,25 @@ def estatistica(notas):
       print('Insira um número válido')
       continue
     if escolha == 1:
-      media = sum(notas.values())/len(notas.values())
-      print(f'A média das notas é {media:.2f}')
+        if notas:
+          media = sum(notas.values())/len(notas.values())
+          print(f'A média das notas é {media:.2f}')
+        else:
+            print('Não há notas para calcular a média.')
     elif escolha == 2:
-      maior_nota = max(notas.values())
-      alunos_maior_nota = [nome for nome,nota in notas.items() if nota == maior_nota]
-      print(f'A maior nota da turma é {maior_nota:.2f} e os alunos {alunos_maior_nota} a tiraram')
+        if notas:
+          maior_nota = max(notas.values())
+          alunos_maior_nota = [nome for nome,nota in notas.items() if nota == maior_nota]
+          print(f'A maior nota da turma é {maior_nota:.2f} e os alunos {alunos_maior_nota} a tiraram')
+        else:
+            print('Não há notas para verificar.')
     elif escolha == 3:
-      menor_nota = min(notas.values())
-      alunos_menor_nota = [nome for nome, nota in notas.items() if nota == menor_nota]
-      print(f'A menor nota da turma é {menor_nota:.2f} e os alunos {alunos_menor_nota} a tiraram')
+        if notas:
+          menor_nota = min(notas.values())
+          alunos_menor_nota = [nome for nome, nota in notas.items() if nota == menor_nota]
+          print(f'A menor nota da turma é {menor_nota:.2f} e os alunos {alunos_menor_nota} a tiraram')
+        else:
+            print('Não há notas para verificar.')
     elif escolha == 0:
       print('Voltando ao menu')
       break
@@ -182,4 +202,3 @@ def printar_notas(notas):
 
 #Chamando o programa
 main()
-
