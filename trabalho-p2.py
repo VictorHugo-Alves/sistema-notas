@@ -184,18 +184,21 @@ def guardar_notas(notas):
 
 #lendo arquivos
 def ler_notas():
-  with open('notas.json','r') as leitura_arquivo:
-    texto = leitura_arquivo.read()
-    dados = json.loads(texto)
-    return dados
+	try:
+	  with open('notas.json','r') as leitura_arquivo:
+	    texto = leitura_arquivo.read()
+	    if not texto.strip():
+	    	return {}
+	    dados = json.loads(texto)
+	    return dados
+	except (FileNotFoundError, json.JSONDecodeError):
+		return {}
     
 #printando arquivos
 def printar_notas(notas):
-  with open('notas.json','r') as leitura_arquivo:
-    texto = leitura_arquivo.read()
-    dados = json.loads(texto)
   print('Dados salvos no arquivo:')
-  print(dados)
+  for nome, nota in notas.items():
+  	print(f'{nome}: {nota}')
 
 
 
