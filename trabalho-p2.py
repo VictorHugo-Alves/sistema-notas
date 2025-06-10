@@ -1,3 +1,5 @@
+import json
+
 #principal
 def main():
   notas = {}
@@ -176,14 +178,12 @@ def ordenar_alunos(notas):
         
 #guardando arquivos
 def guardar_notas(notas):
-  import json
   with open('notas.json','w') as arquivo:
     arquivo.write(json.dumps(notas))
 
 
 #lendo arquivos
 def ler_notas():
-  import json
   with open('notas.json','r') as leitura_arquivo:
     texto = leitura_arquivo.read()
     dados = json.loads(texto)
@@ -191,7 +191,6 @@ def ler_notas():
     
 #printando arquivos
 def printar_notas(notas):
-  import json
   with open('notas.json','r') as leitura_arquivo:
     texto = leitura_arquivo.read()
     dados = json.loads(texto)
