@@ -119,21 +119,20 @@ def ordenar_alunos(notas):
   ''')
   while True:
     try:
-      escolha = int(input('Insira uma das opções acima.'))
+        escolha = int(input('Insira uma das opções acima.'))
+        if escolha == 1:
+          for nome, nota in sorted(notas.items()):
+            print(f'{nome}: {nota}')
+        elif escolha == 2:
+          for nome, nota in sorted(notas.items(), key=lambda i:i[1], reverse = True):
+            print(f'{nome}: {nota}')
+        elif escolha == 0:
+          print('Voltando ao menu')
+          break
+        else:
+          print('Escolha um número válido')
     except ValueError:
       print('Insira um número válido')
-    if escolha == 1:
-      for nome, nota in sorted(notas.items()):
-        print(f'{nome}: {nota}')
-    elif escolha == 2:
-      for nome, nota in sorted(notas.items(), key=lambda i:i[1], reverse = True):
-        print(f'{nome}: {nota}')
-    elif escolha == 0:
-      print('Voltando ao menu')
-      break
-    else:
-      print('Escolha um número válido')
-      continue
 
 #guardando arquivos
 def guardar_notas(notas):
