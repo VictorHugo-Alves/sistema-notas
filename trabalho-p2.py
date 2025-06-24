@@ -1,9 +1,5 @@
 import json #Importando o JSON
 
-#Colocar verificação no nome do usuário
-#Colocar verificação de nota entre 0 e 10
-
-
 #principal
 def main(): #Definindo a função principal
   notas = {} #Definindo a variável notas como um dicionário vazio
@@ -66,9 +62,13 @@ def cadastro_alunos(notas): #Criando a função para cadastro de notas
       try:
         nota = float(input('Insira a nota do aluno'))
       except ValueError: #Tratamento de erros para a nota do aluno
-        print(f'Insira a nota do aluno {nome}')
-        continue 
-      notas[nome] = nota #Se passar por todas as verificações de nome e nota, adiciona o aluno e a nota no dicionário de notas (nome como chave e nota como valor)
+        print(f'Nota inválida')
+        continue
+      if 0 <= nota <=10:
+        notas[nome] = nota #Se passar por todas as verificações de nome e nota, adiciona o aluno e a nota no dicionário de notas (nome como chave e nota como valor)
+      else:
+        print('A nota deve estar entre 0 e 10.')
+        continue
       while True: #loop para verificar se o usuário deseja continuar com o processo
         continua = input('Deseja continuar? Y/N').upper()
         if continua not in ('Y','N'):
