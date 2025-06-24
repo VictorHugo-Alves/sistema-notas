@@ -1,32 +1,38 @@
-import json
+import json #Importando o JSON
+
+#Colocar verificação no nome do usuário
+#Colocar verificação de nota entre 0 e 10
+
 
 #principal
-def main():
-  notas = {}
-  print("\n******************* Sistema de notas - UERJ *******************")
-  print('Olá, professor(a) seja bem vindo(a) ao sistema de gerenciamento de notas da UERJ')
-  usuario = input('Qual o seu nome?').title()
-  while True:
-    escolha = menu()
+def main(): #Definindo a função principal
+  notas = {} #Definindo a variável notas como um dicionário vazio
+  print("\n******************* Sistema de notas - UERJ *******************") #Mensagem de boas vindas
+  print('Olá, professor(a) seja bem vindo(a) ao sistema de gerenciamento de notas da UERJ') #Mensagem de boas vindas
+  usuario = input('Qual o seu nome?').title() #Para personalizar o uso do sistema pelo usuário
+  if not usuario:
+    return 'Insira um nome válido.'
+  while True: #Loop da fuñção principal
+    escolha = menu() #Chamando a função 'menu()'
     if escolha == 1:
-      cadastro_alunos(notas)
+      cadastro_alunos(notas) #Chamando a função de cadastro de alunos
     elif escolha == 2:
-      estatistica(notas)
+      estatistica(notas) #Chamando a função de estatística
     elif escolha == 3:
-      ordenar_alunos(notas)
+      ordenar_alunos(notas) #Chamando a função de ordenação de alunos
     elif escolha == 4:
-      dados_carregados = ler_notas()
-      if dados_carregados:
-        notas.update(dados_carregados) 
+      dados_carregados = ler_notas() #Chamando a função para printar os dados do arquivo json
+      if dados_carregados: #Verificando se o arquivo possui dados
+        notas.update(dados_carregados) #Se possui, adicionando esses dados ao dicionário 'notas'
         print("Dados carregados com sucesso!")
-        printar_notas(notas) 
+        printar_notas(notas)
       else:
         print("Nenhum dado para carregar ou arquivo não encontrado/vazio.")
     elif escolha == 0:
-      print(f'Fim do programa, obrigado {usuario}!')
+      print(f'Fim do programa, obrigado {usuario}!') #Finalizando o programa
       break
     else:
-      print('Opção inválida!')
+      print('Opção inválida!') #Opção inválida, fora do que foi pedido
 
 
 #menu
@@ -90,7 +96,7 @@ def cadastro_alunos(notas):
         print('Voltando ao menu')
         break
 
-        
+
 #estatisticas
 def estatistica(notas):
   print('''
@@ -157,7 +163,7 @@ def ordenar_alunos(notas):
         else:
             print('Não há dados disponíveis para ordenação')
             return
-        
+
   while True:
     try:
         escolha = int(input('Insira uma das opções acima.'))
@@ -175,7 +181,7 @@ def ordenar_alunos(notas):
     except ValueError:
       print('Insira um número válido')
 
-        
+
 #guardando arquivos
 def guardar_notas(notas):
   with open('notas.json','w') as arquivo:
@@ -184,23 +190,20 @@ def guardar_notas(notas):
 
 #lendo arquivos
 def ler_notas():
-	try:
-	  with open('notas.json','r') as leitura_arquivo:
-	    texto = leitura_arquivo.read()
-	    if not texto.strip():
-	    	return {}
-	    dados = json.loads(texto)
-	    return dados
-	except (FileNotFoundError, json.JSONDecodeError):
-		return {}
-    
+  try:
+    with open('notas.json','r') as leitura_arquivo:
+      texto = leitura_arquivo.read()
+      if not texto.strip():
+        return {}
+      dados = json.loads(texto)
+      return dados
+  except (FileNotFoundError, json.JSONDecodeError):
+    return {}
+
 #printando arquivos
 def printar_notas(notas):
   print('Dados salvos no arquivo:')
   for nome, nota in notas.items():
-  	print(f'{nome}: {nota}')
+    print(f'{nome}: {nota}')
 
-
-
-#Chamando o programa
 main()
