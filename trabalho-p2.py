@@ -51,12 +51,12 @@ def menu(): #Definindo a função menu, que é chamada na função main()
 
 #Cadastro notas
 def cadastro_alunos(notas): #Criando a função para cadastro de notas
-  while True: #loop para o cadastro de notas até que o usuário queira parar 
-      nome = input('Insira o nome do aluno: ').title() 
+  while True: #loop para o cadastro de notas até que o usuário queira parar
+      nome = input('Insira o nome do aluno: ').title()
       if not nome: #Verificando se o nome não é vazio
         print('Insira um nome válido')
         continue #Retornando ao início do loop
-      elif not nome.replace(' ','').isalpha(): #Verificando se não há caracteres além de letras e espaços 
+      elif not nome.replace(' ','').isalpha(): #Verificando se não há caracteres além de letras e espaços
         print('Nome inválido! Insira apenas letras e espaços')
         continue #Retornando ao início do loop
       try:
@@ -119,10 +119,12 @@ def estatistica(notas):
       print('Insira um número válido')
       continue
     if escolha == 1:
-        if notas: #Verifica se o dicionário de notas não está vazio, para evitar divisão por zero
-          media = sum(notas.values())/len(notas.values()) #Calcula a média das notas
+        if notas:
+          valores_notas = list(notas.values())
+          soma_total = soma_notas(valores_notas, 0) # Chama a função recursiva
+          media = soma_total / len(valores_notas) # Calcula a média com a soma recursiva
           print(f'A média das notas é {media:.2f}')
-        else: 
+        else:
             print('Não há notas para calcular a média.')
     elif escolha == 2:
         if notas: #Verifica se o dicionário de notas não está vazio
@@ -166,7 +168,7 @@ def ordenar_alunos(notas):
         if escolha == 1:
           for nome, nota in sorted(notas.items()): #Ordena os alunos por nome
             print(f'{nome}: {nota}')
-        elif escolha == 2: 
+        elif escolha == 2:
           for nome, nota in sorted(notas.items(), key=lambda i:i[1], reverse = True): #Ordena por nota, utilizando key=lambda e reverse = True para mostrar da maior para a menor nota
             print(f'{nome}: {nota}')
         elif escolha == 0:
@@ -176,6 +178,15 @@ def ordenar_alunos(notas):
           print('Escolha um número válido')
     except ValueError:
       print('Insira um número válido')
+
+
+#Função recursiva de soma de notas
+def soma_notas(notas_list, indice):
+    if indice >= len(notas_list):
+        return 0
+    else:
+        return notas_list[indice] + soma_notas(notas_list, indice + 1) #Recursiva: Soma a nota atual com a soma do restante da lista.
+
 
 
 #guardando arquivos
@@ -199,7 +210,7 @@ def ler_notas():
 #printando arquivos
 def printar_notas(notas):
   print('Dados salvos no arquivo:')
-  for nome, nota in notas.items(): 
+  for nome, nota in notas.items():
     print(f'{nome}: {nota}')
 
 main()
