@@ -8,13 +8,13 @@ Este projeto consiste na implementação de um sistema em Python para o gerencia
 
 O sistema oferece as seguintes funcionalidades principais:
 
-* [cite_start]**Cadastro de Alunos e Notas**: Permite registrar novos alunos e associar notas a eles. Inclui validação para garantir nomes e notas válidos (notas entre 0 e 10).
-* [cite_start]**Cálculo de Estatísticas**: Calcula e exibe estatísticas importantes para as notas dos alunos, como média, maior e menor nota[cite: 18].
-* [cite_start]**Ordenação de Alunos**: Possibilita ordenar a lista de alunos por nome ou por nota[cite: 19], facilitando a visualização e análise dos dados.
-* [cite_start]**Persistência de Dados**: Salva os dados dos alunos e suas notas em um arquivo JSON (`notas.json`) e permite o carregamento posterior, garantindo que as informações não se percam após o encerramento do programa.
-* [cite_start]**Tratamento de Exceções**: Implementa mecanismos robustos para lidar com entradas inválidas (e.g., texto onde se espera número) e cenários de arquivo (e.g., arquivo `notas.json` não encontrado ou vazio).
-* [cite_start]**Modularização do Código**: O código é dividido em funções bem definidas para cada tarefa (menu, cadastro, estatísticas, ordenação, manipulação de arquivos), promovendo organização e legibilidade.
-* [cite_start]**Função Recursiva**: Contém uma implementação de uma função recursiva (`soma_notas`) utilizada no cálculo da média das notas, demonstrando o uso de recursão.
+* **Cadastro de Alunos e Notas**: Permite registrar novos alunos e associar notas a eles. Inclui validação para garantir nomes e notas válidos (notas entre 0 e 10).
+* **Cálculo de Estatísticas**: Calcula e exibe estatísticas importantes para as notas dos alunos, como média, maior e menor nota[cite: 18].
+* **Ordenação de Alunos**: Possibilita ordenar a lista de alunos por nome ou por nota[cite: 19], facilitando a visualização e análise dos dados.
+* **Persistência de Dados**: Salva os dados dos alunos e suas notas em um arquivo JSON (`notas.json`) e permite o carregamento posterior, garantindo que as informações não se percam após o encerramento do programa.
+* **Tratamento de Exceções**: Implementa mecanismos robustos para lidar com entradas inválidas (e.g., texto onde se espera número) e cenários de arquivo (e.g., arquivo `notas.json` não encontrado ou vazio).
+* **Modularização do Código**: O código é dividido em funções bem definidas para cada tarefa (menu, cadastro, estatísticas, ordenação, manipulação de arquivos), promovendo organização e legibilidade.
+* **Função Recursiva**: Contém uma implementação de uma função recursiva (`soma_notas`) utilizada no cálculo da média das notas, demonstrando o uso de recursão.
 
 ### Funcionalidade Extra (Criatividade)
 
@@ -26,7 +26,7 @@ O sistema oferece as seguintes funcionalidades principais:
 
 ## Desafios e Aprendizados
 
-Durante o desenvolvimento deste projeto, enfrentei e superei diversos desafios, o que proporcionou um grande aprendizado:
+O desenvolvimento deste projeto me proporcionou um grande aprendizado em:
 
 * **Estruturação do Código**: O principal desafio foi organizar um projeto mais complexo, dividindo-o em módulos funcionais (`main`, `menu`, `cadastro_alunos`, etc.) para garantir a clareza e a manutenibilidade do código.
 * **Tratamento de Exceções Robustas**: Aprender a prever e tratar diferentes tipos de erros (entrada de usuário inválida, problemas com arquivos JSON) foi crucial para tornar o sistema mais resiliente.
@@ -37,7 +37,4 @@ Durante o desenvolvimento deste projeto, enfrentei e superei diversos desafios, 
 ## Autor
 
 * **Victor Hugo Alves**
-    * [Seu perfil do LinkedIn](https://www.linkedin.com/in/seu-perfil-linkedin) (Substitua pelo link real do seu LinkedIn)
-
-## Licença
-   Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT) - veja o arquivo `LICENSE` para mais detalhes. (Se você adicionar o arquivo LICENSE no GitHub)
+    * [Seu perfil do LinkedIn](https://www.linkedin.com/in/victorhugo-data/)
