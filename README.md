@@ -40,7 +40,7 @@ Para testar e rodar este sistema em sua máquina local, siga os passos abaixo:
 O sistema oferece as seguintes funcionalidades principais:
 
 * **Cadastro de Alunos e Notas**: Permite registrar novos alunos e associar notas a eles. Inclui validação para garantir nomes e notas válidos (notas entre 0 e 10).
-* **Cálculo de Estatísticas**: Calcula e exibe estatísticas importantes para as notas dos alunos, como média, maior e menor nota[cite: 18].
+* **Cálculo de Estatísticas**: Calcula e exibe estatísticas importantes para as notas dos alunos, como média, maior e menor nota.
 * **Ordenação de Alunos**: Possibilita ordenar a lista de alunos por nome ou por nota, facilitando a visualização e análise dos dados.
 * **Persistência de Dados**: Salva os dados dos alunos e suas notas em um arquivo JSON (`notas.json`) e permite o carregamento posterior, garantindo que as informações não se percam após o encerramento do programa.
 * **Tratamento de Exceções**: Implementa mecanismos robustos para lidar com entradas inválidas (e.g., texto onde se espera número) e cenários de arquivo (e.g., arquivo `notas.json` não encontrado ou vazio).
