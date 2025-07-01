@@ -4,6 +4,37 @@
 
 Este projeto implementa um Sistema de Gerenciamento de Notas desenvolvido em Python. Ele demonstra conceitos fundamentais de programação, como modularização com funções, estrutura de dados (dicionários) e persistência de dados em arquivo (JSON). O sistema permite o cadastro, alteração, cálculo de estatísticas e ordenação de alunos e suas notas.
 
+## Como Executar o Projeto
+
+Para testar e rodar este sistema em sua máquina local, siga os passos abaixo:
+
+1.  **Pré-requisitos:**
+    * **Python 3.x** (preferencialmente Python 3.8 ou superior)
+
+2.  **Obter o Código:**
+    Você tem duas opções para obter o código:
+    * **Clonar o repositório (recomendado - se você tiver Git instalado):**
+        Abra seu terminal (Git Bash, Prompt de Comando ou PowerShell) e execute o comando:
+        ```bash
+        git clone https://github.com/VictorHugo-Alves/sistema-notas.git
+        cd sistema-notas
+        ```
+    * **Baixar o ZIP do projeto:**
+
+
+4.  **Executar o Programa:**
+    Com o terminal posicionado na pasta correta, execute o script Python principal:
+    ```bash
+    python trabalho-p2.py
+    ```
+
+
+5.  **Interagindo com o Sistema:**
+    * O sistema irá iniciar com uma mensagem de boas-vindas e pedirá seu nome de usuário.
+    * Em seguida, um menu de opções será exibido. Você poderá cadastrar alunos, alterar notas, ver estatísticas, ordenar alunos e salvar/carregar dados.
+    * Os dados serão salvos e carregados do arquivo `notas.json` na mesma pasta do script principal.
+
+
 ## Funcionalidades
 
 O sistema oferece as seguintes funcionalidades principais:
@@ -16,25 +47,11 @@ O sistema oferece as seguintes funcionalidades principais:
 * **Modularização do Código**: O código é dividido em funções bem definidas para cada tarefa (menu, cadastro, estatísticas, ordenação, manipulação de arquivos), promovendo organização e legibilidade.
 * **Função Recursiva**: Contém uma implementação de uma função recursiva (`soma_notas`) utilizada no cálculo da média das notas, demonstrando o uso de recursão.
 
-### Gerenciamento Avançado de Alunos e Notas
-
-* **Gerenciamento de Alunos e Notas**: Além das funcionalidades básicas, o sistema permite ao usuário:
-    * Alterar o nome de um aluno já cadastrado.
-    * Alterar a nota de um aluno existente.
-    * Excluir um aluno do sistema.
-    Essa funcionalidade extra aprimora a usabilidade e a flexibilidade do sistema, mostrando um controle mais completo sobre os dados.
-
-## Desafios e Aprendizados
-
-O desenvolvimento deste projeto me proporcionou um grande aprendizado em:
-
-* **Estruturação do Código**: O principal desafio foi a modularização interna do código, dividindo as funcionalidades em funções bem encapsuladas (main, menu, cadastro_alunos, etc.). Isso foi crucial para garantir a clareza, organização e manutenibilidade de um projeto mais complexo.
-* **Tratamento de Exceções Robustas**: Aprender a prever e tratar diferentes tipos de erros (entrada de usuário inválida, problemas com arquivos JSON) foi crucial para tornar o sistema mais resiliente.
-* **Persistência de Dados**: A implementação de salvamento e carregamento de dados em JSON foi um ponto chave para garantir a continuidade do sistema entre as execuções, exigindo cuidado na serialização e desserialização dos dados.
-* **Lógica de Ordenação e Filtragem**: Desenvolver a lógica para ordenar alunos por diferentes critérios e extrair estatísticas demandou o uso eficaz de estruturas de dados e funções como `lambda`.
-* **Gerenciamento de Versões com Git**: Utilizar o Git desde o início foi fundamental para controlar as alterações, revisar o histórico do código e garantir a segurança do trabalho, especialmente em um projeto em constante evolução.
 
 ## Autor
 
 * **Victor Hugo Alves**
     * [Seu perfil do LinkedIn](https://www.linkedin.com/in/victorhugo-data/)
+
+## Licença
+Este projeto é **open-source** e sua colaboração é bem-vinda! Sinta-se livre para explorar, aprender e contribuir com o código.
