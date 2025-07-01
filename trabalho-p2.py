@@ -15,10 +15,12 @@ def main(): #Definindo a função principal
     if escolha == 1:
       cadastro_alunos(notas) #Chamando a função de cadastro de alunos
     elif escolha == 2:
-      estatistica(notas) #Chamando a função de estatística
+        alterar_notas(notas) #Chamando a função para alterar notas
     elif escolha == 3:
-      ordenar_alunos(notas) #Chamando a função de ordenação de alunos
+      estatistica(notas) #Chamando a função de estatística
     elif escolha == 4:
+      ordenar_alunos(notas) #Chamando a função de ordenação de alunos
+    elif escolha == 5:
       dados_carregados = ler_notas() #Chamando a função para printar os dados do arquivo json
       if dados_carregados: #Verificando se o arquivo possui dados
         notas.update(dados_carregados) #Se possui, adicionando esses dados ao dicionário 'notas'
@@ -26,6 +28,7 @@ def main(): #Definindo a função principal
         printar_notas(notas) #Chamando a função printar_notas(), com o dicionario 'notas' como parâmetro
       else:
         print("Nenhum dado para carregar ou arquivo não encontrado/vazio.")
+
     elif escolha == 0:
       print(f'Fim do programa, obrigado {usuario}!') #Finalizando o programa
       break
@@ -37,9 +40,10 @@ def main(): #Definindo a função principal
 def menu(): #Definindo a função menu, que é chamada na função main()
   print('''
 1.Cadastrar alunos e suas notas
-2.Calcular estatísticas(média, maior e menor nota)
-3.Ordenar alunos por nome ou nota
-4.Carregar os dados salvos
+2.Alterar notas
+3.Calcular estatísticas(média, maior e menor nota)
+4.Ordenar alunos por nome ou nota
+5.Carregar os dados salvos
 0.Sair
 ''')
   try: #tratamento de erros para o input abaixo
@@ -93,14 +97,72 @@ def cadastro_alunos(notas): #Criando a função para cadastro de notas
         print('Voltando ao menu')
         break
 
+#Função para alterar notas
+def alterar_notas(notas):
+    while True: #Loop para escolha do usuário
+        try: #Tratamento de erros pra escolha do usuário
+            escolha = int(input('Escolha: alterar nome(1), alterar nota(2), excluir aluno(3), sair(0)'))
+        except:
+            print('Insira um número válido.')
+
+        if escolha == 1:
+            aluno = input('Insira o nome que deseja modificar').title()
+            if aluno in notas: #Verificando se o aluno está no sistema
+                novo_nome = input('Insira o novo nome').title() #Definindo o novo nome
+                if novo_nome and novo_nome.replace(' ','').isalpha(): #Verificando se o novo nome não está vazio e se possui apenas letras
+                    notas[novo_nome] = notas[aluno] #Alterando o nome do aluno
+                    del notas[aluno] #Deletando o nome antigo
+                    print('Alteração realizada com sucesso!')
+                else:
+                    print('Insira um nome válido')
+            else:
+                print('O aluno informado não está cadastrado no sistema')
+
+        elif escolha == 2:
+            aluno = input('Insira o nome do aluno que deseja alterar a nota').title()
+            if aluno in notas: #Verificando se o aluno está no sistema
+                try:
+                  nova_nota = float(input(f'Insira a nova nota para {aluno}: '))
+                  if 0 <= nova_nota <= 10: #Verificando a nota
+                      notas[aluno] = nova_nota #Alterando a nota
+                      print('Nota alterada com sucesso!')
+                  else:
+                      print('A nota deve estar entre 0 e 10.')
+                except ValueError:
+                  print('Nota inválida. Insira um número.')
+            else:
+                print('O aluno informado não está cadastrado no sistema')
+
+        elif escolha == 3:
+          aluno = input('Insira o nome do aluno que deseja remover').title()
+          if aluno in notas and aluno and aluno.replace(' ','').isalpha(): #Verificando o nome
+            del notas[aluno] #Deletando o aluno
+            print('Aluno removido com sucesso!')
+          else:
+            print('O aluno não está no sistema')
+
+        elif escolha == 0:
+            while True: #Caso ele não queira continuar, outro loop para saber se ele quer salvar as notas no arquivo
+                salvar = input('Deseja salvar os dados? Y/N').upper()
+                if salvar not in ('Y','N'):
+                    print('Insira Y ou N')
+                else:
+                    break
+            if salvar == 'Y':
+                guardar_notas(notas) #Se for salvar, chama a função guardar_notas() com o dicionário 'notas' como parâmetro
+                print('Dados salvos com sucesso')
+                print('Voltando ao menu...')
+                break
+            else:
+                print('Dados descartados.')
+                print('Voltando ao menu...')
+                break
+        else:
+            print('Insira uma opção válida: alterar nome(1), alterar nota(2), sair(0)')
+
 #estatisticas
 def estatistica(notas):
-  print('''
-  1. Calcular média
-  2. Maior nota
-  3. Menor nota
-  0. Voltar ao menu
-  ''')
+  
   if not notas: #verifica se o dicionário está vazio, para evitar divisão por zero
     print('O dicionário atual está vazio. Tentando carregar dados do arquivo JSON')
     dados_arquivo = ler_notas() #Caso esteja vazio, define uma nova variavel chamada 'dados_arquivo' como função ler_notas()
@@ -113,6 +175,12 @@ def estatistica(notas):
 
 
   while True:
+    print('''
+  1. Calcular média
+  2. Maior nota
+  3. Menor nota
+  0. Voltar ao menu
+  ''')
     try:
       escolha = int(input('Insira uma das opções acima.'))
     except ValueError:
@@ -149,11 +217,6 @@ def estatistica(notas):
 
 #ordenação
 def ordenar_alunos(notas):
-  print('''
-  1. Ordenar por nome
-  2. Ordenar por nota
-  0. Voltar ao menu
-  ''')
   if not notas: #Verifica se o dicionário de notas está vazio
         dados_arquivo = ler_notas() #Caso esteja vazio, define a variavel dados_arquivo chamando a função ler_notas()
         if dados_arquivo: #Verifica se a variável possui dados
@@ -163,6 +226,11 @@ def ordenar_alunos(notas):
             return
 
   while True:
+    print('''
+  1. Ordenar por nome
+  2. Ordenar por nota
+  0. Voltar ao menu
+  ''')
     try:
         escolha = int(input('Insira uma das opções acima.'))
         if escolha == 1:
@@ -182,10 +250,15 @@ def ordenar_alunos(notas):
 
 #Função recursiva de soma de notas
 def soma_notas(notas_list, indice):
-    if indice >= len(notas_list):
-        return 0
-    else:
-        return notas_list[indice] + soma_notas(notas_list, indice + 1) #Recursiva: Soma a nota atual com a soma do restante da lista.
+#notas_list: Uma lista contendo os valores das notas
+#indice: O índice atual na lista que está sendo processado
+
+  # Caso Base: Se o índice for igual ao tamanho da lista, não há mais notas para somar
+  if indice >= len(notas_list):
+      return 0
+  else:
+      # Recursiva: Soma a nota atual com a soma do restante da lista
+      return notas_list[indice] + soma_notas(notas_list, indice + 1)
 
 
 
